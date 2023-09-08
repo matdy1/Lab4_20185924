@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+    <title>CRUD Distribuidoras</title>
+    <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/css/fontawesome-all.min.css}">
+</head>
+<body>
+<div class='container'>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-app" aria-controls="navbar-app" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse justify-content-end" id="navbar-app">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/empleado/lista}">Empleados</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/jugadores/lista}">Historial</a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" th:href="@{/jugadores/lista}"> Reportes</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </div>
+
+
+    <div id="content">
+        <main>
+            <div class="container px-4 py-5">
+                <h1 class="pb-2 border-bottom">Lista Empleados</h1>
+                <form method="post" th:action="@{/empleado/buscarPorNombre}">
+                    <div class="input-group mb-3">
+                        <input name="searchField" class="form-control" type="text" placeholder="Buscar por nombre" th:value="${textoBuscado}" >
+                        <button class="btn btn-primary" type="submit">Buscar</button>
+                        <a class="btn btn-outline-secondary" th:href="@{/shipper}">Limpiar</a>
+                    </div>
+                </form>
+                <a class="btn btn-primary mb-4" th:href="@{'/shipper/new'}">Nuevo Transportista</a>
+                <a class="btn btn-primary mb-4" th:href="@{'/shipper/buscarTelefonoCon5'}">Buscar telefono con número 5 (b. parcial)</a>
+                <table class="table table-sm">
+                    <tr>
+                        <th>#</th>
+                        <th>Nombre de la compañia</th>
+                        <th>Teléfono</th>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                    <tr th:each="shipper, info : ${shipperList}">
+                        <td th:text="${info.index + 1}"></td>
+                        <td th:text="${shipper.companyname}"></td>
+                        <td th:text="${shipper.phone}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/shipper/edit?id=' + ${shipper.shipperId}}">Editar</a>
+                        </td>
+                        <td><a class="btn btn-primary" th:href="@{'/shipper/editPhone?id=' + ${shipper.shipperId}}">Editar solo phone</a>
+                        </td>
+                        <td><a class="btn btn-danger" th:href="@{'/shipper/delete?id=' + ${shipper.shipperId}}">Borrar</a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </main>
+        <footer class="py-4 bg-light mt-auto">
+            <div class="container-fluid">
+                <div class="d-flex align-items-center justify-content-between small">
+                    <div class="text-muted">Colocar # Grupo - PUCP @ 2022</div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</div>
+<script th:src="@{/js/jquery-3.4.1.min.js}"></script>
+<script th:src="@{/js/popper.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+</html>
