@@ -27,6 +27,15 @@ public class Empleado {
     private String phone_number;
 
     @Column(nullable = false,length = 45)
+    private Integer department_id;
+
+    @Column(nullable = false,length = 45)
+    private Double salary;
+
+    @Column(nullable = false,length = 45)
     private String hire_date;
+
+    @Column(nullable = false,length = 45)
+    private String job_id;
 
 }

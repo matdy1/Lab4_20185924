@@ -42,29 +42,32 @@
                     <div class="input-group mb-3">
                         <input name="searchField" class="form-control" type="text" placeholder="Buscar por nombre" th:value="${textoBuscado}" >
                         <button class="btn btn-primary" type="submit">Buscar</button>
-                        <a class="btn btn-outline-secondary" th:href="@{/shipper}">Limpiar</a>
+                        <a class="btn btn-outline-secondary" th:href="@{/empleado/lista}">Limpiar</a>
                     </div>
                 </form>
-                <a class="btn btn-primary mb-4" th:href="@{'/shipper/new'}">Nuevo Transportista</a>
-                <a class="btn btn-primary mb-4" th:href="@{'/shipper/buscarTelefonoCon5'}">Buscar telefono con número 5 (b. parcial)</a>
                 <table class="table table-sm">
                     <tr>
                         <th>#</th>
-                        <th>Nombre de la compañia</th>
-                        <th>Teléfono</th>
-                        <th></th>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Puesto</th>
+                        <th>Departamento</th>
+                        <th>Email</th>
+                        <th>Numero de Telefono</th>
+                        <th>Salario</th>
                         <th></th>
                         <th></th>
                     </tr>
-                    <tr th:each="shipper, info : ${shipperList}">
+                    <tr th:each="emp, info : ${lista}">
                         <td th:text="${info.index + 1}"></td>
-                        <td th:text="${shipper.companyname}"></td>
-                        <td th:text="${shipper.phone}"></td>
-                        <td><a class="btn btn-primary" th:href="@{'/shipper/edit?id=' + ${shipper.shipperId}}">Editar</a>
-                        </td>
-                        <td><a class="btn btn-primary" th:href="@{'/shipper/editPhone?id=' + ${shipper.shipperId}}">Editar solo phone</a>
-                        </td>
-                        <td><a class="btn btn-danger" th:href="@{'/shipper/delete?id=' + ${shipper.shipperId}}">Borrar</a>
+                        <td th:text="${emp.getFirst_name()}"></td>
+                        <td th:text="${emp.getLast_name()}"></td>
+                        <td th:text="${emp.getJob_id()}"></td>
+                        <td th:text="${emp.getDepartment_id()}"></td>
+                        <td th:text="${emp.getEmail()}"></td>
+                        <td th:text="${emp.getPhone_number()}"></td>
+                        <td th:text="${emp.getSalary()}"></td>
+                        <td><a class="btn btn-primary" th:href="@{'/empleados/editar?id=' + ${emp.getEmployee_id()}}">Editar</a>
                         </td>
                     </tr>
                 </table>
